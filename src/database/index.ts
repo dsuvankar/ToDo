@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { db } from "../config.js";
+import { db } from "../src/config.js";
 
 // Determine connection method
 const connectDB = async () => {
