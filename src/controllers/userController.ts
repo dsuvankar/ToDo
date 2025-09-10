@@ -1,8 +1,10 @@
 import User from "../models/userModel.js"
 import asyncHandler from "express-async-handler"
 import generateToken from "../utils/generateToken.js"
+import type { ProtectedRequest } from "../types/app-request.js"
+import type { Response } from "express"
 
-const loginUser = asyncHandler(async (req, res) => {
+const loginUser = asyncHandler(async (req: ProtectedRequest, res: Response) => {
   const { email, password } = req.body
 
   const user = await User.findOne({ email })
@@ -21,7 +23,7 @@ const loginUser = asyncHandler(async (req, res) => {
   }
 })
 
-const registerUser = asyncHandler(async (req, res) => {
+const registerUser = asyncHandler(async (req: ProtectedRequest, res: Response) => {
   const { name, email, password } = req.body
 
   const userExists = await User.findOne({ email })
@@ -48,7 +50,7 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 })
 
-const forgotPassword = asyncHandler(async (req, res) => {
+const forgotPassword = asyncHandler(async (req: ProtectedRequest, res: Response) => {
   const { email } = req.body
 
   const user = await User.findOne({ email })
@@ -89,7 +91,7 @@ const forgotPassword = asyncHandler(async (req, res) => {
   }
 })
 
-const resetPassword = asyncHandler(async (req, res) => {
+const resetPassword = asyncHandler(async (req: ProtectedRequest, res: Response) => {
   const hashedToken = crypto
     .createHash("sha256")
     .update(req.params.resetToken)
@@ -122,7 +124,7 @@ const resetPassword = asyncHandler(async (req, res) => {
   })
 })
 
-const logoutUser = asyncHandler(async (req, res) => {
+const logoutUser = asyncHandler(async (req: ProtectedRequest, res: Response) => {
   res.cookie("jwt", "", {
     httpOnly: true,
     expires: new Date(0),

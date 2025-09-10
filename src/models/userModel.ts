@@ -13,6 +13,9 @@ export interface UserModel extends Model<UserDoc> {
   matchPassword: (enteredPassword: string) => Promise<boolean>;
 }
 
+export const DOCUMENT_NAME = "User";
+export const COLLECTION_NAME = "users";
+
 const userSchema = new Schema<UserDoc>(
   {
     name: {
@@ -47,6 +50,6 @@ userSchema.pre("save", async function (next) {
   if (this.password) this.password = await bcrypt.hash(this.password, salt);
 });
 
-const User = mongoose.model("User", userSchema);
+const User: Model<UserDoc> = mongoose.model<UserDoc, UserModel>(DOCUMENT_NAME, userSchema, COLLECTION_NAME);
 
 export default User;
