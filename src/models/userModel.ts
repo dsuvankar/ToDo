@@ -6,11 +6,11 @@ export interface UserDoc extends Document {
   name?: string;
   email: string;
   password?: string;
-  matchedPassword?: (enteredPassword: string) => Promise<boolean>;
+  matchPassword: (enteredPassword: string) => Promise<boolean>;
 }
 
 export interface UserModel extends Model<UserDoc> {
-  matchedPassword?: (enteredPassword: string) => Promise<boolean>;
+  matchPassword: (enteredPassword: string) => Promise<boolean>;
 }
 
 const userSchema = new Schema<UserDoc>(
