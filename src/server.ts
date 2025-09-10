@@ -12,7 +12,7 @@ const PORT = port ?? 8080;
 export const app = express();
 
 app.use(cors({ origin: corsUrl, optionsSuccessStatus: 200 }));
-console.log("Heii");
+console.log("Heii yaaa");
 
 app.use(cookieParser());
 
