@@ -9,7 +9,7 @@ const connectDB = async () => {
     if (db.connectionString) {
       // Use Atlas connection string
       dbURI = db.connectionString;
-      console.log("🌐 Connecting to MongoDB Atlas..");
+      console.log("🌐 Connecting to MongoDB Atlas......");
     } else {
       // Fallback to local connection
       dbURI = `mongodb://${db.user ? `${db.user}:${db.password}@` : ""}${
